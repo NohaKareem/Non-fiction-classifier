@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <!-- lib includes from https://github.com/CodingTrain/website/blob/main/TeachableMachine/1-teachable-machine/P5/index.html -->
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">  
+    <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/addons/p5.sound.min.js"></script> -->
+    <script src="https://unpkg.com/ml5@0.4.2/dist/ml5.min.js"></script>
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8"/>
+    <title>Non-fiction Classifier</title>
+  </head>
+
+  <body>
+    <h1>Non-fiction Classifier</h1>
+    <!-- ~add number of training images -->
+    <p>This is a classifier that classifies non-ficiton book covers</p>
+    <!-- <input type="file" accept="image/gif, image/png, image/jpg, image/jpeg"> -->
+    <!-- <picture>
+        <img id="imgToClassify"
+            src=""
+            alt="">
+    </picture> -->
+    <div id="canvasCon">
+      <script src="sketch.js"></script>
+    </div>
+    <div>
+      <h1 id="label"></h1>
+      
+      <div class="info">
+        <h2>Training Settings</h2>
+        <p>
+          <span class="bold">Epohs:</span>70 <br>
+          <span class="bold">Batch Size:</span>32 <br>
+          <span class="bold">Learning Rate:</span>0.001 <br>
+        </p>
+      </div>
+    </div>
+  </body>
+
+</html>
