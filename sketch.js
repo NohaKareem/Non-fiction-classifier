@@ -11,6 +11,7 @@ This example uses p5 preload function to create the classifier
 
 // Classifier Variable
 let classifier;
+let predictionResults = [0];
 // Model URL
 let imageModelURL = '';
 // let imageModelURL = 'https://teachablemachine.withgoogle.com/models/bXy2kDNi/'; //~
@@ -76,7 +77,7 @@ function draw() {
   // text(label, width / 2, height - 4);
   
   // labelCon = document.querySelector('#label');
-  labelCon.innerHTML = label;
+  labelCon.innerHTML = `Highest prediction: ${label}, at ${parseFloat(predictionResults[0].confidence).toFixed(2) * 100}%`;
 }
 
 // Get a prediction for the current video frame
@@ -98,9 +99,11 @@ function gotResult(error, results) {
   // console.log(results[0]);
   // console.log(results);
   label = results[0].label;
-  results.forEach(result => {
+  // console.log(results[0]);
+  predictionResults = results;
+  // results.forEach(result => {
     
-  });
+  // });
   // Classifiy again!
   classifyVideo();
 }
