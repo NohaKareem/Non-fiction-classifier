@@ -4,16 +4,34 @@ body {
   align-items: center;
   text-align: center;
   font-family: "DM Sans", sans-serif;
+  margin: 5% 15%;
 }
 
 canvas {
   border-radius: 50px;
+  text-align: left;
+}
+
+.intro {
+  margin-bottom: 5%;
 }
 
 .info {
-  display: flex;
-  flex-direction: column;
   align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: flex-start;
+}
+.info h2, .info p {
+  text-align: left;
+}
+
+span {
+  display: inline-block;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=main.css.map */

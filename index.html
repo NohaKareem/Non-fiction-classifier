@@ -13,9 +13,11 @@
   </head>
 
   <body>
-    <h1>Non-fiction Classifier</h1>
-    <!-- ~add number of training images -->
-    <p>This is a classifier that classifies non-ficiton book covers</p>
+    <h1>Guessing non-fiction categories</h1>
+    <p class="intro">
+      This is a classifier that classifies non-ficiton book covers. This is built to test how reliably a learning algorithm could detect a non-fiction book category by its cover.
+      
+    </p>
     <!-- <input type="file" accept="image/gif, image/png, image/jpg, image/jpeg"> -->
     <!-- <picture>
         <img id="imgToClassify"
@@ -29,12 +31,25 @@
       <h1 id="label"></h1>
       
       <div class="info">
-        <h2>Training Settings</h2>
-        <p>
-          <span class="bold">Epohs:</span>70 <br>
-          <span class="bold">Batch Size:</span>32 <br>
-          <span class="bold">Learning Rate:</span>0.001 <br>
-        </p>
+        <div class="trainaingSettings">
+          <h2>Training Settings</h2>
+          <p>
+            <!-- 53 -->
+            <span class="bold">Epohs:</span> 70 <br>
+            <span class="bold">Batch Size:</span> 32 <br>
+            <span class="bold">Learning Rate:</span> 0.001 <br>
+          </p>
+        </div>
+        <div class="trainingData">
+        <!-- ~add number of training images -->
+          <h2>Training Dataset Size</h2>
+          <p class="trainSize">
+            <span class="bold">Biography/memoir:</span> 30 <br>
+            <span class="bold">Career, business& entrepreneurship:</span> 45 <br>
+            <span class="bold">Food& cookbooks:</span> 45 <br>
+            <span class="bold">Other:</span> 27 <br>
+          </p>
+        </div>
       </div>
     </div>
   </body>

@@ -98,6 +98,9 @@ function gotResult(error, results) {
   // console.log(results[0]);
   // console.log(results);
   label = results[0].label;
+  results.forEach(result => {
+    
+  });
   // Classifiy again!
   classifyVideo();
 }
