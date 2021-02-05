@@ -26,34 +26,40 @@ let label = "";
 let userImage;
 let readImg = false;
 
-// on image upload, image upload from previous project https://github.com/NohaKareem/css-filters/blob/master/js/main.js
-// document.querySelector('input').addEventListener("change", () => {
-//   console.log(this.files)
-//   userImage = this.files[0];
-//   // imgToClassify
-//   if (userImage != undefined) {
-//     var imgReader = new FileReader();
-//     imgReader.addEventListener("load", () =>{
-//       readImg = true; //~
-//     });
+// bar chart
+let data;
 
-//     imgReader.readAsDataURL(userImg);
-//   }
-// });
+let ctx;// = document.getElementById('predictionsChart').getContext('2d');
 
-let labelCon; 
+let labelCon;
+
+// sample bar chart https://code.tutsplus.com/tutorials/getting-started-with-chartjs-line-and-bar-charts--cms-28384
+let chartLabels = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
+
+var densityData = {
+  label: 'Prediction %',
+  data: [5427, 5243, 5514, 3933, 1326, 687, 1271, 1638]
+};
 
 // Load the model first
 function preload() {
   classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   labelCon = document.querySelector('#label');
+  ctx = document.getElementById('predictionsChart');//.getContext('2d');
+
+  // let predictionsChart = new Chart(ctx, {
+  //   type: 'horizontalBar',
+  //   data: {
+  //     labels: chartLabels,
+  //     datasets: [densityData]
+  //   }
+  // });
 }
 
 function setup() {
-  // createCanvas(320, 260);
   let p5Canvas = createCanvas(700, 500);
   p5Canvas.parent('canvasCon');
-  
+
   // Create the video
   video = createCapture(VIDEO);
   video.size(700, 500);
@@ -70,22 +76,15 @@ function draw() {
   // Draw the video
   image(flippedVideo, 0, 0);
 
-  //// Draw the label
-  // fill(255);
-  // textSize(16);
-  // textAlign(CENTER);
-  // text(label, width / 2, height - 4);
-  
-  // labelCon = document.querySelector('#label');
   labelCon.innerHTML = `Highest prediction: ${label}, at ${parseFloat(predictionResults[0].confidence).toFixed(2) * 100}%`;
+  // barChart();
+  // data.insertRows(0, [["Knight to King 3 (Nf3)", 12]])
 }
 
 // Get a prediction for the current video frame
 function classifyVideo() {
   flippedVideo = ml5.flipImage(video)
-  // let imgToClassify = readImg ? userImage : flippedVideo; 
   classifier.classify(flippedVideo, gotResult);
-  // classifier.classify(imgToClassify, gotResult);
 }
 
 // When we get a result
@@ -96,14 +95,24 @@ function gotResult(error, results) {
     return;
   }
   // The results are in an array ordered by confidence.
-  // console.log(results[0]);
-  // console.log(results);
   label = results[0].label;
-  // console.log(results[0]);
   predictionResults = results;
-  // results.forEach(result => {
-    
-  // });
-  // Classifiy again!
+
+  clearChart();
+  // chart.data.datasets[0].data[5] =;
+  // chart.data.labels[0].data[5] = ;
+
+  // Classify again!
   classifyVideo();
 }
+
+function clearChart() {
+  function removeData(chart) {
+    chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+      dataset.data.pop();
+    });
+    chart.update();
+  }
+}
+

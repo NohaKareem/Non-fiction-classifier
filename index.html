@@ -1,57 +1,79 @@
 <!DOCTYPE html>
 <html>
-  <!-- lib includes from https://github.com/CodingTrain/website/blob/main/TeachableMachine/1-teachable-machine/P5/index.html -->
-  <head>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">  
-    <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/addons/p5.sound.min.js"></script> -->
-    <script src="https://unpkg.com/ml5@0.4.2/dist/ml5.min.js"></script>
-    <link href="css/main.css" rel="stylesheet" type="text/css">
-    <meta charset="utf-8"/>
-    <title>Non-fiction Classifier</title>
-  </head>
+<!-- lib includes from https://github.com/CodingTrain/website/blob/main/TeachableMachine/1-teachable-machine/P5/index.html -->
 
-  <body>
-    <h1>Guessing non-fiction categories</h1>
-    <p class="intro">
-      This is a classifier that classifies non-ficiton book covers, using <a href="https://teachablemachine.withgoogle.com/">Teachable Machine</a>. This is built to test how reliably a learning algorithm could detect a non-fiction book category by its cover.
-      
-    </p>
-    <!-- <input type="file" accept="image/gif, image/png, image/jpg, image/jpeg"> -->
-    <!-- <picture>
-        <img id="imgToClassify"
-            src=""
-            alt="">
-    </picture> -->
-    <div id="canvasCon">
-      <script src="sketch.js"></script>
-    </div>
-    <div>
-      <h1 id="label"></h1>
-      
-      <div class="info">
-        <div class="trainaingSettings">
-          <h2>Training Settings</h2>
-          <p>
-            <!-- 53 -->
-            <span class="bold">Epohs:</span> 70 <br>
-            <span class="bold">Batch Size:</span> 32 <br>
-            <span class="bold">Learning Rate:</span> 0.001 <br>
-          </p>
-        </div>
-        <div class="trainingData">
-        <!-- ~add number of training images -->
-          <h2>Training Dataset Size</h2>
-          <p class="trainSize">
-            <span class="bold">Biography/memoir:</span> 30 <br>
-            <span class="bold">Career, business& entrepreneurship:</span> 45 <br>
-            <span class="bold">Food& cookbooks:</span> 45 <br>
-            <span class="bold">Other:</span> 27 <br>
-          </p>
-        </div>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <meta name="viewport" content="initial-scale=1.0, width=device-width">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+  <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/addons/p5.sound.min.js"></script> -->
+  <script src="https://unpkg.com/ml5@0.4.2/dist/ml5.min.js"></script>
+  <script src="chart.js"></script>
+  <link href="css/main.css" rel="stylesheet" type="text/css">
+  <meta charset="utf-8" />
+  <title>Non-fiction Classifier</title>
+</head>
+
+<body>
+  <h1>Judging a (non-fiction) book by its cover</h1>
+  <p class="intro">
+    This is a classifier that classifies non-fiction book covers, using <a
+      href="https://teachablemachine.withgoogle.com/">Teachable Machine</a>. This is built to test how reliably a
+    learning algorithm could detect a non-fiction book category by its cover.
+  </p>
+  <div id="canvasCon">
+    <script src="sketch.js"></script>
+  </div>
+  <div>
+    <h1 id="label"></h1>
+    <canvas id="predictionsChart"></canvas>
+    <div id="visCon"></div>
+    <div class="info">
+      <div class="trainaingSettings">
+        <h2>Training Settings</h2>
+        <p>
+          <span class="bold">Epochs:</span> 60 <br>
+          <span class="bold">Batch Size:</span> 16 <br>
+          <span class="bold">Learning Rate:</span> 0.001 <br>
+        </p>
+      </div>
+      <div class="trainingData">
+        <h2>Training Dataset Size</h2>
+        <p class="trainSize">
+          <span class="bold">Biography/memoir:</span> 45 <br>
+          <span class="bold">Career, business& entrepreneurship:</span> 45 <br>
+          <span class="bold">Food& cookbooks:</span> 45 <br>
+          <span class="bold">Nature:</span> 45 <br>
+          <span class="bold">Personal growth& development:</span> 45 <br>
+          <span class="bold">Tech& Coding:</span> 45 <br>
+          <span class="bold">Other:</span> 45 <br>
+        </p>
       </div>
     </div>
-  </body>
+    <div class="process">
+      <p>A total of 315 images were trained, across 7 categories, with 45 samples each. An 'Other' category was provided
+        to categorize other non-fiction genres. It included a selection of non-fiction topics from beauty and writing to
+        crafts and woodwork. Ideally, more training samples would be provided, encompassing more diversity and thus
+        providing a more nuanced learning model.
+        <br>
+        On default settings epochs 50, batch size 16, and learning rate 0.001.
+        <br>
+        on those default settings, the prediction accuracy rates are above average for biography/memoirs, food&
+        cookbooks and nature. All other categories seemed to have less than average accuracy when tested with a sample
+        size of 7 books. The confusion matrix reflected a confusion in nature and technology& code (this makes sense as
+        some books in the tech& coding training dataset showcase nature illustration such as of birds and reptiles). The
+        loss per epoch (reflecting accuracy where the closer the loss value is to 0, the better) for test dataset is at
+        1.5 or higher (up to 2.5) as epochs increase. Most importantly, the loss curve (or training) is indefinitely
+        decreasing, while the test loss curve (also known as validation) is indefinitely increasing, suggesting a model
+        underfit (<a
+          href="https://machinelearningmastery.com/learning-curves-for-diagnosing-machine-learning-model-performance/">ref</a>)
+      </p>
+    </div>
+  </div>
+</body>
 
 </html>
