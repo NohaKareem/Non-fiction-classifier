@@ -46,12 +46,12 @@ function preload() {
   labelCon = document.querySelector('#label');
   resultsCon = document.querySelector('.resultsCon ul');
   ctx = document.getElementById('predictionsChart');
-  predictionsChart = new Chart(ctx, {
-    type: 'horizontalBar',
-    data: {
-      datasets: [chartInitData]
-    }
-  });
+  // predictionsChart = new Chart(ctx, {
+  //   type: 'horizontalBar',
+  //   data: {
+  //     datasets: [chartInitData]
+  //   }
+  // });
 }
 
 function setup() {
@@ -108,10 +108,10 @@ function gotResult(error, results) {
   predictionVals = results.map(p => parseFloat(p.confidence).toFixed(5) * 100);
 
   // update chart
-  predictionsChart.data.datasets = [predictionVals];
-  predictionsChart.data.datasets.label = 'Prediction %';
-  predictionsChart.data.labels = labels;
-  predictionsChart.update();
+  // predictionsChart.data.datasets = [predictionVals];
+  // predictionsChart.data.datasets.label = 'Prediction %';
+  // predictionsChart.data.labels = labels;
+  // predictionsChart.update();
 
   // update html
   resultStr = "";
