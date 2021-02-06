@@ -21,6 +21,12 @@
     This is a classifier that classifies non-fiction book covers, using <a
       href="https://teachablemachine.withgoogle.com/">Teachable Machine</a>. This is built to test how reliably a
     learning algorithm could detect a non-fiction book category by its cover.
+
+    <br><br>
+    <span class="bold">How to use:</span> to have the classifier judge your book by its cover, hold up your book to your
+    device's camera. Try experimenting with the positioning, note that the the classifier is reading everything in your
+    screen, so be mindful of how you position your book, and how it's being cropped. Also, you'll need to turn
+    on camera permissions for this to work.
   </p>
   <div id="canvasCon">
     <script src="js/tensorflow.js"></script>
@@ -38,7 +44,7 @@
         </p>
       </div>
       <div class="trainingData">
-        <h2>Training Dataset Size</h2>
+        <h2>Training Dataset Size*</h2>
         <p class="trainSize">
           <span class="bold">Biography/memoir:</span> 45 <br>
           <span class="bold">Career, business& entrepreneurship:</span> 45 <br>
@@ -47,6 +53,7 @@
           <span class="bold">Personal growth& development:</span> 45 <br>
           <span class="bold">Tech& Coding:</span> 45 <br>
           <span class="bold">Other:</span> 45 <br>
+          * all training images were that of English books
         </p>
       </div>
     </div>
