@@ -17,7 +17,6 @@ let predictionResults = [0];
 let imageModelURL = 'js/';
 // let imageModelURL - 'https://teachablemachine.withgoogle.com/models/oAVNhG2Gh/';
 
-
 // Video
 let video;
 let flippedVideo;
