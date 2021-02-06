@@ -31,6 +31,7 @@ let readImg = false;
 // bar chart
 let data;
 let ctx;
+let labels = ["Biography/memoir", "Career, business& entrepreneurship", "Food& cookbooks", "Nature", "Personal growth& development", "Tech&Coding", "Other"];
 let labelCon, resultsCon;
 let resultStr = "";
 var chartInitData = {
@@ -103,19 +104,19 @@ function gotResult(error, results) {
   predictionResults.push(predictionResults.splice(4, 1)[0]);
 
   // export labels and confidence values
-  predictionLabels = results.map(p => p.label);
+  // predictionLabels = results.map(p => p.label);
   predictionVals = results.map(p => parseFloat(p.confidence).toFixed(5) * 100);
 
   // update chart
   // predictionsChart.data.datasets.data = predictionVals;
   // predictionsChart.data.datasets.label = 'Prediction %';
-  // predictionsChart.data.labels = predictionLabels;
+  // predictionsChart.data.labels = labels;//predictionLabels;
   // predictionsChart.update();
 
   // update html
   resultStr = "";
-  predictionResults.forEach(r => {
-    resultStr += `<li><span class="bold">${r.label}</span> at ${parseFloat(r.confidence).toFixed(2) * 100}%<br></li>`;
+  predictionResults.forEach((r, i) => {
+    resultStr += `<li><span class="bold">${labels[i]}</span> at ${parseFloat(r.confidence).toFixed(2) * 100}%<br></li>`;
   });
 
   // Classify again!
