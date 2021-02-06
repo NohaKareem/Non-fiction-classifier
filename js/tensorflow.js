@@ -99,6 +99,9 @@ function gotResult(error, results) {
   // sort by label
   predictionResults = results.sort((a, b) => a.label.localeCompare(b.label));
 
+  // move 'Other', element 4, to be last element
+  predictionResults.push(predictionResults.splice(4, 1)[0]);
+
   // export labels and confidence values
   predictionLabels = results.map(p => p.label);
   predictionVals = results.map(p => parseFloat(p.confidence).toFixed(5) * 100);
