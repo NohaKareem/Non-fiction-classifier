@@ -31,7 +31,8 @@ let readImg = false;
 // bar chart
 let data;
 let ctx;
-let labelCon;
+let labelCon, resultsCon;
+let resultStr = "";
 var chartInitData = {
   label: 'Prediction %',
   data: []
@@ -42,19 +43,13 @@ let predictionsChart;
 function preload() {
   classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   labelCon = document.querySelector('#label');
+  resultsCon = document.querySelector('.resultsCon ul');
   ctx = document.getElementById('predictionsChart');
   // predictionsChart = new Chart(ctx, {
   //   type: 'horizontalBar',
   //   data: {
   //     datasets: [chartInitData]
   //   }
-  //   // options: {
-  //   //   scales: {
-  //   //     ticks: {
-  //   //       min: 0
-  //   //     }
-  //   //   }
-  //   // }
   // });
 }
 
@@ -81,6 +76,7 @@ function draw() {
 
   // update html
   labelCon.innerHTML = `Highest prediction:<br> ${label}, at ${parseFloat(predictionResults[0].confidence).toFixed(2) * 100}%`;
+  resultsCon.innerHTML = resultStr;
 }
 
 // Get a prediction for the current video frame
@@ -99,19 +95,25 @@ function gotResult(error, results) {
 
   // The results are in an array ordered by confidence.
   label = results[0].label;
-  predictionResults = results;
 
   // sort by label
   predictionResults = results.sort((a, b) => a.label.localeCompare(b.label));
 
   // export labels and confidence values
   predictionLabels = results.map(p => p.label);
-  predictionVals = results.map(p => parseFloat(p.confidence).toFixed(5));
+  predictionVals = results.map(p => parseFloat(p.confidence).toFixed(5) * 100);
 
   // update chart
-  // predictionsChart.data.datasets = [predictionVals];
+  // predictionsChart.data.datasets.data = predictionVals;
+  // predictionsChart.data.datasets.label = 'Prediction %';
   // predictionsChart.data.labels = predictionLabels;
   // predictionsChart.update();
+
+  // update html
+  resultStr = "";
+  predictionResults.forEach(r => {
+    resultStr += `<li><span class="bold">${r.label}</span> at ${parseFloat(r.confidence).toFixed(2) * 100}%<br></li>`;
+  });
 
   // Classify again!
   classifyVideo();
