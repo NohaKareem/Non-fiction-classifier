@@ -34,15 +34,7 @@ span {
   font-weight: bold;
 }
 
-#visCon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 900px;
-  height: 300px;
-}
-
-.process p {
+.process p, .process h2 {
   text-align: left;
 }
 

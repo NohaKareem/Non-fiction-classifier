@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -50,22 +51,35 @@
       </div>
     </div>
     <div class="process">
+      <h2>Training Notes</h2>
       <p>A total of 315 images were trained, across 7 categories, with 45 samples each. An 'Other' category was provided
         to categorize other non-fiction genres. It included a selection of non-fiction topics from beauty and writing to
         crafts and woodwork. Ideally, more training samples would be provided, encompassing more diversity and thus
         providing a more nuanced learning model.
-        <br>
-        On default settings epochs 50, batch size 16, and learning rate 0.001.
-        <br>
-        on those default settings, the prediction accuracy rates are above average for biography/memoirs, food&
-        cookbooks and nature. All other categories seemed to have less than average accuracy when tested with a sample
-        size of 7 books. The confusion matrix reflected a confusion in nature and technology& code (this makes sense as
-        some books in the tech& coding training dataset showcase nature illustration such as of birds and reptiles). The
-        loss per epoch (reflecting accuracy where the closer the loss value is to 0, the better) for test dataset is at
-        1.5 or higher (up to 2.5) as epochs increase. Most importantly, the loss curve (or training) is indefinitely
-        decreasing, while the test loss curve (also known as validation) is indefinitely increasing, suggesting a model
-        underfit (<a
-          href="https://machinelearningmastery.com/learning-curves-for-diagnosing-machine-learning-model-performance/">ref</a>)
+        <br><br>
+        On default settings epochs 50, batch size 16, and learning rate 0.001, the prediction accuracy rates were above
+        average for biography/memoirs, food&
+        cookbooks and nature. All other categories seemed to have less than average accuracy when tested (with a sample
+        size of 7 books).
+        <br><br>
+        The confusion matrix reflected, among other things, a confusion in nature and technology& code (this makes sense
+        as some books in the tech& coding training dataset showcase nature illustration such as of birds and reptiles).
+        The loss per epoch (reflecting accuracy where the closer the loss value is to 0, the better) for test dataset is
+        at 1.5 or higher (up to 2.5) as epochs increase.
+        <br><br>
+        Most importantly, the loss curve (or training curve) was indefinitely decreasing, while the test loss curve
+        (also known as validation) was indefinitely increasing, suggesting a model underfit (<a
+          href="https://machinelearningmastery.com/learning-curves-for-diagnosing-machine-learning-model-performance/">ref</a>).
+        <br><br>
+        From there, a number of parameter changes were experimented with and it was noticed that a higher epoch size,
+        with this dataset, would increase accuracy in some of the classes possibly at the expense of underfitting the
+        remainder ones.
+        <br><br>
+        ~For an overall reasonable classifier give the training dataset at hand, the settings above (60 epochs, batch
+        size of 16 and learning rate of 0.001) was provided.
+        <br><br>
+        For a full log on training model iterative testing and accuracy results, consider <a
+          href="https://www.notion.so/Teachable-Machine-training-log-ad96d92170a64623a05abf3d5e460ad6">this log</a>.
       </p>
     </div>
   </div>

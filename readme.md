@@ -1,7 +1,7 @@
 # Non-fiction book cover classifier
 
 Built using [Teachable Machine](https://teachablemachine.withgoogle.com/) for an assignment for class 5016.
-
+- Learning model training [log](https://www.notion.so/Teachable-Machine-training-log-ad96d92170a64623a05abf3d5e460ad6)
 # Setup
 
 - demo [here](https://nohakareem.github.io/Non-fiction-classifier/)
