@@ -5,6 +5,11 @@ body {
     text-align: center;
     font-family: 'DM Sans', sans-serif;
     margin: 5% 15%;
+    color: #030914;
+}
+
+h1, h2 {
+    color: #f18e0b;
 }
 
 canvas {
@@ -39,4 +44,16 @@ span {
     p, h2 {
         text-align: left;
     }
+}
+
+.bookCon {
+    position: relative;
+}
+
+img {
+    width: 20vw;
+    z-index: 3;
+    position: absolute;
+    right: -15%;
+    margin-top: -20%;
 }

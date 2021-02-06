@@ -10,3 +10,4 @@ Built using [Teachable Machine](https://teachablemachine.withgoogle.com/) for an
 # Refs
 - [example teachable project + imports](https://github.com/CodingTrain/website/blob/main/TeachableMachine/1-teachable-machine/P5/index.html)
 - [sample bar chart code](https://code.tutsplus.com/tutorials/getting-started-with-chartjs-line-and-bar-charts--cms-28384) with charts.js
+- image from [Unsplash.com](https://unsplash.com/photos/xY55bL5mZAM)
