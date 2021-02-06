@@ -12,13 +12,14 @@ This example uses p5 preload function to create the classifier
 // Classifier Variable
 let classifier;
 let predictionResults = [0];
+
 // Model URL
 let imageModelURL = '';
-// let imageModelURL = 'https://teachablemachine.withgoogle.com/models/bXy2kDNi/'; //~
 
 // Video
 let video;
 let flippedVideo;
+
 // To store the classification
 let label = "";
 
@@ -28,31 +29,31 @@ let readImg = false;
 
 // bar chart
 let data;
-
-let ctx;// = document.getElementById('predictionsChart').getContext('2d');
-
+let ctx;
 let labelCon;
-
-// sample bar chart https://code.tutsplus.com/tutorials/getting-started-with-chartjs-line-and-bar-charts--cms-28384
-let chartLabels = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"];
-
-var densityData = {
+var chartInitData = {
   label: 'Prediction %',
-  data: [5427, 5243, 5514, 3933, 1326, 687, 1271, 1638]
+  data: []
 };
+let predictionsChart;
 
 // Load the model first
 function preload() {
-  classifier = ml5.imageClassifier(imageModelURL + 'model.json');
+  classifier = ml5.imageClassifier(imageModelURL + 'js/model.json');
   labelCon = document.querySelector('#label');
-  ctx = document.getElementById('predictionsChart');//.getContext('2d');
-
-  // let predictionsChart = new Chart(ctx, {
+  ctx = document.getElementById('predictionsChart');
+  // predictionsChart = new Chart(ctx, {
   //   type: 'horizontalBar',
   //   data: {
-  //     labels: chartLabels,
-  //     datasets: [densityData]
+  //     datasets: [chartInitData]
   //   }
+  //   // options: {
+  //   //   scales: {
+  //   //     ticks: {
+  //   //       min: 0
+  //   //     }
+  //   //   }
+  //   // }
   // });
 }
 
@@ -73,12 +74,12 @@ function setup() {
 
 function draw() {
   background(0);
+
   // Draw the video
   image(flippedVideo, 0, 0);
 
-  labelCon.innerHTML = `Highest prediction: ${label}, at ${parseFloat(predictionResults[0].confidence).toFixed(2) * 100}%`;
-  // barChart();
-  // data.insertRows(0, [["Knight to King 3 (Nf3)", 12]])
+  // update html
+  labelCon.innerHTML = `Highest prediction:<br> ${label}, at ${parseFloat(predictionResults[0].confidence).toFixed(2) * 100}%`;
 }
 
 // Get a prediction for the current video frame
@@ -94,25 +95,24 @@ function gotResult(error, results) {
     console.error(error);
     return;
   }
+
   // The results are in an array ordered by confidence.
   label = results[0].label;
   predictionResults = results;
 
-  clearChart();
-  // chart.data.datasets[0].data[5] =;
-  // chart.data.labels[0].data[5] = ;
+
+  // sort by label
+  predictionResults = results.sort((a, b) => a.label.localeCompare(b.label));
+
+  // export labels and confidence values
+  predictionLabels = results.map(p => p.label);
+  predictionVals = results.map(p => parseFloat(p.confidence).toFixed(5));
+
+  // update chart
+  // predictionsChart.data.datasets = [predictionVals];
+  // predictionsChart.data.labels = predictionLabels;
+  // predictionsChart.update();
 
   // Classify again!
   classifyVideo();
 }
-
-function clearChart() {
-  function removeData(chart) {
-    chart.data.labels.pop();
-    chart.data.datasets.forEach((dataset) => {
-      dataset.data.pop();
-    });
-    chart.update();
-  }
-}
-

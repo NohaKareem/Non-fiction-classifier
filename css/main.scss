@@ -17,8 +17,6 @@ canvas {
 }
 
 .info {
-    // display: flex;
-    // flex-direction: column;
     align-items: center;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -34,14 +32,6 @@ span {
 
 .bold {
     font-weight: bold;
-}
-
-#visCon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 900px;
-    height: 300px;
 }
 
 .process p {
