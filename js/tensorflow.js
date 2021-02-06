@@ -14,7 +14,9 @@ let classifier;
 let predictionResults = [0];
 
 // Model URL
-let imageModelURL = '';
+let imageModelURL = 'js/';
+// let imageModelURL - 'https://teachablemachine.withgoogle.com/models/oAVNhG2Gh/';
+
 
 // Video
 let video;
@@ -39,7 +41,7 @@ let predictionsChart;
 
 // Load the model first
 function preload() {
-  classifier = ml5.imageClassifier(imageModelURL + 'js/model.json');
+  classifier = ml5.imageClassifier(imageModelURL + 'model.json');
   labelCon = document.querySelector('#label');
   ctx = document.getElementById('predictionsChart');
   // predictionsChart = new Chart(ctx, {
@@ -99,7 +101,6 @@ function gotResult(error, results) {
   // The results are in an array ordered by confidence.
   label = results[0].label;
   predictionResults = results;
-
 
   // sort by label
   predictionResults = results.sort((a, b) => a.label.localeCompare(b.label));

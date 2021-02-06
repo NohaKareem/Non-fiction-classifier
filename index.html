@@ -18,12 +18,12 @@
 <body>
   <h1>Judging a (non-fiction) book by its cover</h1>
   <p class="intro">
-    This is a classifier that classifies non-fiction book covers, using <a
+    <span class="bold">About:</span> This is a classifier that classifies non-fiction book covers, using <a
       href="https://teachablemachine.withgoogle.com/">Teachable Machine</a>. This is built to test how reliably a
     learning algorithm could detect a non-fiction book category by its cover.
 
     <br><br>
-    <span class="bold">How to use:</span> to have the classifier judge your book by its cover, hold up your book to your
+    <span class="bold">How to use:</span> To have the classifier judge your book by its cover, hold up your book to your
     device's camera. Try experimenting with the positioning, note that the the classifier is reading everything in your
     screen, so be mindful of how you position your book, and how it's being cropped. Also, you'll need to turn
     on camera permissions for this to work.
@@ -88,7 +88,19 @@
         ~For an overall reasonable classifier give the training dataset at hand, the settings above (60 epochs, batch
         size of 16 and learning rate of 0.001) was provided.
         <br><br>
-        For a full log on training model iterative testing and accuracy results, consider <a
+        Overall, lower accuracy classes reflect the low dataset that doesn't reinforce the intra-diversity. A common
+        case across different training iterations was with the personal growth class, which included a wide breadth of
+        sub-topics, such as productivity, psychology, decision making and more. On the other hand, higher
+        accuracy classes reflect higher sample similarity and thus higher accuracy rates for the given test dataset. A
+        common case was biographies and memoirs, which tend to have a person's photo on the cover.
+        <br><br>
+        <div class="bold">Room for growth:</div> For a better classifier, a wider training dataset could be provided.
+        Also, some classes may require more training datasets than others (such as the 'Other' category, encompassing a
+        wide breadth of topics), or the class could be divided into multiple classes, each of which would be populated
+        with a sufficient amount of training images.
+        <br><br>
+        For more details on training model iterative testing and accuracy results (including confusion matrix for
+        iteration mentioned above, and more), consider <a
           href="https://www.notion.so/Teachable-Machine-training-log-ad96d92170a64623a05abf3d5e460ad6">this log</a>.
       </p>
     </div>
